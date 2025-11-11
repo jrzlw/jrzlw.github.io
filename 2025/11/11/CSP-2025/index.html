@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="jr_zlw,124090875@link.cuhk.edu.cn"><title>CSP-2025 · (≧∀≦)ゞ</title><meta name="description" content="CSP-J 普及组
+A. number
+
+题意：输入一行字符串s，用其中出现的数字最大能拼出多少。
+题解：找出所有数字后，排序或者直接桶排，倒序输出所有数字。注意特判 $0$。
+
+B. seat
+
+题意：一群人按照分数高低蛇形坐座位，求分数为 $x$ 人坐在哪里。
+题解：对分数排序，在二维数组上模拟"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+    });
+});</script><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">(≧∀≦)ゞ</a></h3><div class="description"><p>HiHi~ Welcome!</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="http://github.com/https://github.com/jrzlw"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="https://cdn.luogu.com.cn/upload/image_hosting/a32ykt4i.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>CSP-2025</a></h3></div><div class="post-content"><h1>CSP-J 普及组</h1>
+<h3 id="A-number">A. number</h3>
+<ul>
+<li>题意：输入一行字符串s，用其中出现的数字最大能拼出多少。</li>
+<li>题解：找出所有数字后，排序或者直接桶排，倒序输出所有数字。注意特判 $0$。</li>
+</ul>
+<h3 id="B-seat">B. seat</h3>
+<ul>
+<li>题意：一群人按照分数高低蛇形坐座位，求分数为 $x$ 人坐在哪里。</li>
+<li>题解：对分数排序，在二维数组上模拟填入即可。然后循环找到坐标。</li>
+</ul>
+<h3 id="C-xor">C. xor</h3>
+<ul>
+<li>题意：给定序列 $a$，求最多能选出多少个不交区间，满足区间异或均为 $K$。</li>
+<li>题解：
+<ul>
+<li>需要注意到异或具有可加减性，即 $a\oplus b\oplus a=b$。</li>
+<li>所以可以适用前缀和，处理出 $s_i$ 表示 $[1,i]$ 的异或，$s_r \oplus s_{l-1}$ 即 $[l,r]$ 的异或。</li>
+<li>注意到对于任意 $x$，存在唯一非负整数 $y$ 满足 $x\oplus y=k$，且 $y=k\oplus x$。</li>
+<li>对于某个特定位置 $i$，贪心地选择最靠右的 $j$ 满足 $s_j=s_i\oplus k$ ，将 $[j+1,i]$ 纳入考虑。
+<ul>
+<li>选择最靠右的 $j$ 是因为靠左的 $j_0$ 包含区间 $[j+1,i]$，因此不优。</li>
+<li>纳入考虑的意思是 $[j+1,i]$ 可能出现在最终答案里。</li>
+</ul>
+</li>
+<li>于是得到了 $O(n)$ 条可能的线段。把这些线段按右端点排序，如果可以就贪心选择即可。
+<ul>
+<li>其实如果能够想到这里直接 $O(n)$ 扫过去也是可以做的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="D-polygon">D. polygon</h3>
+<ul>
+<li>题意：给定序列 $a$，求 $a$ 有多少个子序列 $b$ 满足 $\sum b &gt;2\times \max b$ 。</li>
+<li>题解：
+<ul>
+<li>求子序列的问题大多可以考虑 dp，且子序列与原数组顺序无关，可以直接排序。</li>
+<li>考虑设计 dp 状态，类似于背包，我们需要记录下每一种情况。</li>
+<li>设 $f_{i,j}$ 表示考虑了 $[1,i]$，子序列和为 $j$ 的方案数。如果不记录和不能转移，所以 $j$ 省不掉。</li>
+<li>但是注意到不等式右侧，可以理解为 $\sum b(除了最大值)&gt;\max b$ ，右侧 $\leq 5000$。</li>
+<li>事实上有用的 $j$ 仅仅为 $[0,5001]$。</li>
+<li>因此直接类似背包转移即可：
+<ul>
+<li>$f_{i,j}\leftarrow f_{i-1,j}$</li>
+<li>$f_{i,j}\leftarrow f_{i-1,j-a_i}$</li>
+</ul>
+</li>
+<li>需要注意当 $j&gt;5001$ 时所有转移混在一起，相当于后面的方案翻倍。令 $w=5001$ ：
+<ul>
+<li>$f_{i,w}\leftarrow f_{i-1,j},j\in[w-a_i,w]$</li>
+<li>$f_{i,w}\leftarrow 2f_{i-1,w}$</li>
+</ul>
+</li>
+<li>然后枚举子序列右端点 $i$，将 $f_{i-1,j},j\in[a_i+1,w]$ 加起来即可。</li>
+</ul>
+</li>
+</ul>
+<h1>CSP-S 提高组</h1>
+<h3 id="A-club">A. club</h3>
+<ul>
+<li>题意：给定 $n$ 个选项，第 $i$ 个选项可以选择价值 $a_i,b_i,c_i$ 加入得分。要求同类选项不得超过 $\frac{n}{2}$ 个。保证 $n$ 为偶数，求最大得分。</li>
+<li>题解：
+<ul>
+<li>考虑经典反悔机制，先选择每个选项中最大的加入得分。</li>
+<li>然后考虑如果方案不合法，一定会出现一个唯一的众数（不超过 $\frac{n}{2}$ 且 $n$ 为偶数的原因）</li>
+<li>把这个唯一众数的选项分到其它选项上，直到唯一众数恰好等于 $\frac{n}{2}$。</li>
+<li>由于唯一众数最终等于 $\frac{n}{2}$，一定不会出现新的众数。</li>
+<li>按反悔后的代价排序以后贪心即可。</li>
+</ul>
+</li>
+</ul>
+<h3 id="B-road">B. road</h3>
+<ul>
+<li>题意：给定 $n$ 点 $m$ 边的无向带权图，以及 $k$ 个中转点，中转点 $i$ 向每一个 $j$ 连出一条权值为 $a_{i,j}$ 的边，但是使用第 $i$ 个中转点需要额外的 $c_i$ 权值，求最小生成树。</li>
+<li>题解：
+<ul>
+<li>最小生成树一般离不开 kruskal，或者其衍生的其他算法（B算法）。</li>
+<li>考虑如果不考虑中转点容易建出一棵最小生成树 $T_1$。</li>
+<li>考虑如果一条边不在 $T_1$ 里，加入了中转点后它仍然不会在 $T_1$ 里，因为多出来的边只会使得连通块数减小，越不可能使得本来就在一个连通块内的两个点出现在不同连通块内。</li>
+<li>所以我们将之后的考虑范围从 $m$ 条边缩减到至多 $n-1$ 条边。</li>
+<li>由于中转点的额外花费会严重破坏 kruskal 的贪心过程，因此大概率需要 $O(2^k)$ 枚举。</li>
+<li>如果知道了要选择哪些点，用对应的 $O(kn)$ 条边和之前的 $n-1$ 条边跑一遍即可。</li>
+<li>复杂度 $O(m\log m+2^kkn\alpha (n))$，注意提前把边排序，否则会因为多一个 $\log$ 超时。</li>
+</ul>
+</li>
+</ul>
+<h3 id="C-replace">C replace</h3>
+<p>前置知识：trie+（树上差分 或 AC自动机）</p>
+<ul>
+<li>题意：给定 $n$ 个替换条件表示把字符串 $s_{i,1}$ 完整替换为 $s_{i,2}$ 。$q$ 次询问 $t_{i,1},t_{i,2}$，求有多少个替换条件，将其应用在 $t_{i,1}$ 的某个区间上可以替换为 $t_{i,2}$ 。</li>
+<li>题解：
+<ul>
+<li>考虑将 $s_{i,1}\rightarrow s_{i,2}$ 视为 $ACB\rightarrow ADB$，大写字母表示一个串。</li>
+<li>考虑如果应用了某对 $s$ 使得 $t_{i,1} \rightarrow t_{i,2}$ ，一定形如 $ECF\rightarrow EDF$ 。
+<ul>
+<li>中间的 $C,D$ 为第一个和最后一个不同位置围起来的串。</li>
+<li>$A$ 是 $E$ 的后缀，$B$ 是 $F$ 的前缀。</li>
+<li>如果最后的 $t$ 不是这样的形式，则会把原本相等的改成不同的，矛盾。</li>
+</ul>
+</li>
+<li>于是按照 $(C,D)$ 的二元组将 $s$ 分类，这里可以使用哈希或者 trie。</li>
+<li>接下来有如下做法，任意取一种即可。
+<ul>
+<li>对每一个分类按照 $A?B$ 建立AC自动机，每次询问相当于求有多少个不同的 $A?B$ 在 $E?F$  中出现，$?$ 用来对齐串的位置。跑模板即可。</li>
+<li>对每一个分类建立 $A$ 的后缀字典树 $T_1$ 和 $B$ 的前缀字典树 $T_2$，然后每次询问相当于给定$T_1,T_2$ 上从根出发的两条链，求同时出现在两条链上的 $s$ 串有多少个，可以离线询问然后对每一组单独求取。但需要注意时间复杂度和细节，不要多 $\log$。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="D-employ">D employ</h3>
+<ul>
+<li>题意：有 $n$ 个人面试，你需要安排面试的顺序，每一天有一个人面试。如果第 $i$ 个人前面有多于 $c_i$ 个人失败，则他会直接跑路并视为面试失败。给定有若干天的面试一定会失败。求有多少种顺序使得最终有至少 $m$ 人成功。</li>
+<li>题解：
+<ul>
+<li>考虑dp，设 $f_{i,j}$ 表示前 $i$ 天，拒绝了 $j$ 个人的方案数。</li>
+<li>考虑到目前仍然没有办法转移，难点主要在于 $c_i$ 的顺序太乱，没法约束。</li>
+<li>考虑可以引入新的一维强制 $c_i$ 有序地从低到高转移，考虑到 $c$ 与 $j$ 强相关，可以每次将前面一些位置留空但是强制钦定通过，然后将每次将 $c_x=j$ 的人填入。</li>
+<li>预处理 $t_i$ 表示 $c=i$ 的人数，$p_i$ 为 $t_i$ 的前缀和。</li>
+<li>$f_{i,j,k}$ 表示前 $i$ 天，拒绝了 $j$ 个人，前面还有 $k$ 个位置需要补位：
+<ul>
+<li>$f_{i,j,k+1}\leftarrow f_{i-1,j,k}$，（留空一个面试成功的位置）。</li>
+<li>$f_{i,j,k+1-x}\leftarrow f_{i-1,j-1,k}\binom{k+1}{x}\binom{t_{j}}{x}x!$ ，（选择把 $c_z=j$ 的 $x$ 个补位）。</li>
+<li>$f_{i,j,k-x} \leftarrow f_{i-1,j-1,k}(p_{j-1}-(i-k))\binom{k}{x}\binom{t_{j}}{x}x!$，（选择一个跑路的人补位）。</li>
+</ul>
+</li>
+<li>枚举最终有多少人失败：
+<ul>
+<li>$ans=\sum_{j=0}^{n-m}f_{n,j,n-p_j}(n-p_j)!$ 。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-11</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jrzlw.github.io/2025/11/11/CSP-2025/,(≧∀≦)ゞ,CSP-2025,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2025/11/10/2025XCPC/" title="XCPC 2025 游记">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
