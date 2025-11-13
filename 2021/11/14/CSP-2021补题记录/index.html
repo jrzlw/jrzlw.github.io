@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="jr_zlw,124090875@link.cuhk.edu.cn"><title>CSP-S 2021补题记录 · (≧∀≦)ゞ</title><meta name="description" content="赛时伞兵思路请浏览CSP-S 2021 游记。
+按题目难度升序排序。对某排题人充满无限的恶感。
+[CSP-S 2021] T3 回文 palin
+一个比较显然的事实：第一次选出来的数，它的第二次出现必然在最后。
+假设我们已经选出了一个数，那么考虑在选第二个数的时候必须使它们在最后连续地出现。然后就做"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+    });
+});</script><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">(≧∀≦)ゞ</a></h3><div class="description"><p>HiHi~ Welcome!</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="http://github.com/https://github.com/jrzlw"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li></div><div class="avatar"><img src="https://cdn.luogu.com.cn/upload/image_hosting/a32ykt4i.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>CSP-S 2021补题记录</a></h3></div><div class="post-content"><p>赛时伞兵思路请浏览<a target="_blank" rel="noopener" href="https://www.cnblogs.com/tale365/p/15552850.html">CSP-S 2021 游记</a>。</p>
+<p>按题目难度升序排序。对某排题人充满无限的恶感。</p>
+<h2 id="CSP-S-2021-T3-回文-palin"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7915">[CSP-S 2021] T3 回文 palin</a></h2>
+<p>一个比较显然的事实：第一次选出来的数，它的第二次出现必然在最后。</p>
+<p>假设我们已经选出了一个数，那么考虑在选第二个数的时候必须使它们在最后<strong>连续</strong>地出现。然后就做完了。</p>
+<p>具体到实现，每一次从头/尾取一个数，处理出这个数第二次出现地位置。考虑如果合法，它们第二次出现地位置一定会在序列中间形成一段连续的区间。所以只需要判一下最后能不能在中间这个区间外选完其他所有数就行了。</p>
+<p>还有一个小考虑，就是这个做法和直接爆搜有点像的地方在于它看起来也需要从正反两面去考虑是否合法。然而可以证明这是不用的。我们可以考虑每次选走一个数，中间的区间必然扩大，更有可能使后面的数被选入，所以每次合法的选择都是不劣的，所以放松地贪心去选即可。</p>
+<p>复杂度 $O(\sum n)$ 。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/9poqfgtc">code</a></p>
+<h2 id="CSP-S2021-T1-廊桥分配-airport"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7913">[CSP-S2021] T1 廊桥分配 airport</a></h2>
+<p>看上去就应该有个 $O(nlogn)$ 做法，就往数据结构这方面想。</p>
+<p>首先按照暴力的思路，我把所有航班都映射到时间轴上，在时间轴上想办法。</p>
+<p>可以发现，由于先到先得的原则，一架飞机停在廊桥上的代价是固定的。</p>
+<p>(<s>读者自证不难</s>) 就大概手玩一下就发现了。说明起来挺麻烦的。</p>
+<p>那么就可以预处理每一架飞机的代价，然后做个前缀和，最后枚举分配方案统计答案即可。</p>
+<p>具体到实现，可以假定现在有无限的廊桥，用一个小根堆维护当最小的空闲廊桥，每次贪心地填进去就行了，然后记录下这个最小的廊桥，该飞机的代价就是该廊桥的编号（即至少要这么多的廊桥才能放的下它）。然后把代价统计进一个计数桶里，做个前缀和。枚举分配方式，从两边的前缀和数组中直接查询取最大值即可。</p>
+<p>时间复杂度 $O(nlogn)$ 。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/4bm5ej6r">code</a></p>
+<h2 id="CSP-S-2021-T2-括号序列-bracket"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7914">[CSP-S 2021] T2 括号序列 bracket</a></h2>
+<p>首先这个数据范围就非常明显地提示是个 $O(n^3)$ 大概就是个区间 $\rm{DP}$ 啥的可是我当时就是连暴力都打不出来。</p>
+<p>赛后。。。考虑根本无需考虑题目给出的“超级括号序列“有什么性质，只需直接<strong>根据定义</strong>无脑区间 $\rm{DP}$ 就行。</p>
+<p>从定义去考虑解法，我们设 $dp[l][r][type]$ 表示在区间 $[l,r]$ 内满足 $type$ 性质的串的方案数。</p>
+<ul>
+<li>$type=1$ ：$A/B$ 型括号序列。</li>
+<li>$type=2$ ：全是小星星括号序列。</li>
+<li>$type=3$ ：<code>***A</code> 括号序列。</li>
+<li>$type=4$ ：<code>A***</code> 括号序列。</li>
+<li>$type=5$ ：<code>***A***</code> 括号序列。</li>
+<li>$type = 6$ ：$S$ 型括号序列。</li>
+</ul>
+<p>虽然但是，懒得 $\LaTeX$ 了，就看情况转移一下，具体看代码。</p>
+<p>时间复杂度 $O(n^3)$ ，带了 $6$ 倍常数。<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/paste/1lnqtqxu">code</a></p>
+<h2 id="CSP-S-2021-T4-交通规划-traffic"><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P7916">[CSP-S 2021] T4 交通规划 traffic</a></h2>
+<p><s>在补了在补了。预计 $\rm{NOIP}$ 前应该能补完罢</s> $\rm{Q \omega Q}$ 。</p>
+<p>理解了个大概，不过代码几乎是对着题解打的 $TAT$ 所以还是请移步<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/solution/P7916">洛谷题解区</a>。</p>
+<p>不过为了文章的完整性还是随便写写，（不建议浪费时间细看）。</p>
+<p>首先最重要的一点： <strong>看懂题意</strong> 。看懂之后 $k=2$ 的 $45$ 分其实很好想。</p>
+<p>考虑 $k=2$ 的时候：</p>
+<ul>
+<li>两个点颜色相同，答案为 $0$ 。</li>
+<li>两个点颜色不同，贪心地想，黑白双色点会将图分为两块。恰好连接在不同色块之间的边会产生贡献。</li>
+<li>于是可以再将图进行转化，将一个四边围成的格子看成一个点，两个格子的共边权为两点间的边权。</li>
+<li>就从一个边界上的大点(即射线间的点)跑一遍最短路就能出答案了。</li>
+</ul>
+<p>然后考虑扩展为大问题。实际上可以发现，这张图还是会被分为很多个不同色块。</p>
+<p>然后实际上就变成每个不同颜色点之间两两配对产生的答案。</p>
+<p>同时可以看到一个区间内的配对点不会交叉选择（肯定不优）。</p>
+<p>所以断环成链，区间 $\rm{DP}$ ，经典套路，<s>欢迎来玩</s> 。复杂度 $O(k^3+knmlog(nm))$ 。No Code。</p>
+<p>细节很多，很不好写。<s>所以我是对着题解打哒！</s> 。比较恶习的是建图和多组数据的清空。。。</p>
+<h1>NOIP 2021 rp++</h1>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2021-11-14</span><i class="fa fa-tag"></i></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="javascript:(function(){EN_CLIP_HOST='http://www.evernote.com';try{var%20x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new%20Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&amp;title='+encodeURIComponent(document.title);}})();" ref="nofollow" target="_blank"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://jrzlw.github.io/2021/11/14/CSP-2021补题记录/,(≧∀≦)ゞ,CSP-S 2021补题记录,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2021/11/14/CSP-2021%E6%B8%B8%E8%AE%B0/" title="CSP-2021游记">上一篇</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2021/07/12/%E4%B8%AD%E8%80%83%E6%B8%B8%E8%AE%B0/" title="中考游记">下一篇</a></li></ul></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
