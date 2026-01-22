@@ -8,31 +8,7 @@
         ],
         throwOnError: false
     });
-});</script><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">(≧∀≦)ゞ</a></h3><div class="description"><p>HiHi~ Welcome!</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="http://github.com/https://github.com/jrzlw"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a class="current" href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li></div><div class="avatar"><img src="https://cdn.luogu.com.cn/upload/image_hosting/a32ykt4i.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/09/USACO26JAN/">USACO26JAN</a></h3></div><div class="post-content"><p>Bronze
-T1
-题意：
-有 $A,B$ 两种物品初始各有 $a,b$ 个。便利店可以每次用 $c_B$ 个 $B$ 物品换取 $c_A$ 个 $A$ 物品，并且可以获取物品盲盒，每个盲盒随机开出一个某种物品。如果想要保证得到至少 $f_A$ 个 $A$ 物品，最少需要几个盲盒。
-题解：
-由于需要保证得到 $f...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-09</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/12/16/%E5%96%84%E8%89%AF%E5%88%86%E7%BB%84%E5%92%8C/">DFT-18 善良分组和</a></h3></div><div class="post-content"><p>与邪恶分组和类似，这次变成了 $0,1,…,m-1$ 和 $0,1,…,n-1$ 的异或和相等。
-令 $s_i$ 表示 $0,1,2,…,i$ 的异或和，问题转化为 $s_{m-1}=s_{n-1}$ 。
-找规律可以发现当 $n\geq 4$ 时，$n$ 为偶数时无解，$n$ 为奇数时与 $n$ 模 $4$ 同余...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-12-16</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/12/16/%E9%82%AA%E6%81%B6%E5%88%86%E7%BB%84%E5%92%8C/">DFT-16 邪恶分组和</a></h3></div><div class="post-content"><p>证明：问题等效为 $\frac{m(m-1)}{2}\equiv \frac{n(n-1)}{2}(\bmod m),n\leq m$：
-首先所有组的和必须等于 $0+1+2+…+(m-1)$。
-同时，所有组的和也相当于是 $0+1+2+…+(n-1)$。
-因此这是一个必要条件。同时，如果我们先将 $0,1,2,...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-12-16</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/13/%E7%A5%9E%E7%A7%98ETT%E9%A2%98/">U631144 树高</a></h3></div><div class="post-content"><p>因为孙✌抱怨给小朋友准备的题目过于简单，突发奇想想到了这个题。
-U631144 树高 - 洛谷
-考虑使用 ETT 来维护子树移动。即直接维护树的欧拉环游序。
-那么一次移动相当于是一个区间被移动到了另一个位置。
-这个可以用平衡树来维护，同时需要区间加区间 $\max$。
-如果精细实现的话复杂度 $O(n+q\log...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-13</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/11/CSP-2025/">CSP-2025</a></h3></div><div class="post-content"><p>CSP-J 普及组
-A. number
-
-题意：输入一行字符串s，用其中出现的数字最大能拼出多少。
-题解：找出所有数字后，排序或者直接桶排，倒序输出所有数字。注意特判 $0$。
-
-B. seat
-
-题意：一群人按照分数高低蛇形坐座位，求分数为 $x$ 人坐在哪里。
-题解：对分数排序，在二维数组上模拟填入即可。然后...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-11</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/10/2025XCPC/">XCPC 2025 游记</a></h3></div><div class="post-content"><p>XCPC 2025
+});</script><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">(≧∀≦)ゞ</a></h3><div class="description"><p>HiHi~ Welcome!</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="http://github.com/https://github.com/jrzlw"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a class="current" href="/">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">文章列表</a></li><li><a href="/links">友链</a></li><li><a href="/solutions">题解</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li></div><div class="avatar"><img src="https://cdn.luogu.com.cn/upload/image_hosting/a32ykt4i.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/10/2025XCPC/">XCPC 2025 游记</a></h3></div><div class="post-content"><p>XCPC 2025
 蒟蒻第二年参加 XCPC，目标包保 Ag 争 Au，目前实际 Ag。
 参加以下赛站：
 
@@ -45,20 +21,43 @@ B. seat
 
 队名：正在验证该队是否是真人。
 
-...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-10</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/07/skyzhou/">膜拜Sky</a></h3></div><div class="post-content"><p>在sky佬的帮助下建立了这个博客。
-%%%%%%%%%%%%%%%%%%%%%%
-Sky AK IOI
-Sky AK ICPC WF
-%%%%%%%%%%%%%%%%%%%%%%
-</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-07</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/07/hello-world/">博客使用教程留档</a></h3></div><div class="post-content"><p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in trouble...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-07</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/10/31/CSP-2022/">CSP-2022 vp记录</a></h3></div><div class="post-content"><p>真实情况：报名了忘记交钱所以莫得参加。
+...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-10</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a><a class="tag" href="/tags/stars/" title="stars">stars </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/USACO26JAN/">USACO26JAN</a></h3></div><div class="post-content"><p>Bronze
+T1
+题意：
+有 $A,B$ 两种物品初始各有 $a,b$ 个。便利店可以每次用 $c_B$ 个 $B$ 物品换取 $c_A$ 个 $A$ 物品，并且可以获取物品盲盒，每个盲盒随机开出一个某种物品。如果想要保证得到至少 $f_A$ 个 $A$ 物品，最少需要几个盲盒。
+题解：
+由于需要保证得到 $f...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E5%96%84%E8%89%AF%E5%88%86%E7%BB%84%E5%92%8C/">善良分组和</a></h3></div><div class="post-content"><p>与邪恶分组和类似，这次变成了 $0,1,…,m-1$ 和 $0,1,…,n-1$ 的异或和相等。
+令 $s_i$ 表示 $0,1,2,…,i$ 的异或和，问题转化为 $s_{m-1}=s_{n-1}$ 。
+找规律可以发现当 $n\geq 4$ 时，$n$ 为偶数时无解，$n$ 为奇数时与 $n$ 模 $4$ 同余...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E7%A5%9E%E7%A7%98ETT%E9%A2%98/">U631144 树高</a></h3></div><div class="post-content"><p>因为孙✌抱怨给小朋友准备的题目过于简单，突发奇想想到了这个题。
+U631144 树高 - 洛谷
+考虑使用 ETT 来维护子树移动。即直接维护树的欧拉环游序。
+那么一次移动相当于是一个区间被移动到了另一个位置。
+这个可以用平衡树来维护，同时需要区间加区间 $\max$。
+如果精细实现的话复杂度 $O(n+q\log...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E9%82%AA%E6%81%B6%E5%88%86%E7%BB%84%E5%92%8C/">DFT-16 邪恶分组和</a></h3></div><div class="post-content"><p>证明：问题等效为 $\frac{m(m-1)}{2}\equiv \frac{n(n-1)}{2}(\bmod m),n\leq m$：
+首先所有组的和必须等于 $0+1+2+…+(m-1)$。
+同时，所有组的和也相当于是 $0+1+2+…+(n-1)$。
+因此这是一个必要条件。同时，如果我们先将 $0,1,2,...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/11/CSP-2025/">CSP-2025</a></h3></div><div class="post-content"><p>CSP-J 普及组
+A. number
+
+题意：输入一行字符串s，用其中出现的数字最大能拼出多少。
+题解：找出所有数字后，排序或者直接桶排，倒序输出所有数字。注意特判 $0$。
+
+B. seat
+
+题意：一群人按照分数高低蛇形坐座位，求分数为 $x$ 人坐在哪里。
+题解：对分数排序，在二维数组上模拟填入即可。然后...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2025-11-11</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/11/25/P3107-Odometer-S/">P3107_Odometer_S</a></h3></div><div class="post-content"><p>数位 dp
+考虑比较难以记录某个状态下的最大值，可以直接枚举一个数  $d$  计算强制它为最大值的方案和。
+设  $c$  为  $d$  在某个长度为  $n$  的数中的出现次数，要求满足  $c\geq \lceil\frac{n}{2}\rceil$。
+设  $c’$  为  $d$  以外数码的出现次...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-11-25</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/11/08/P6177-%E6%A0%91%E5%88%86%E5%9D%97/">P6177 树分块</a></h3></div><div class="post-content"><p>点分治 + bitset + 乱搞
+模板题当然是要乱搞的啦，这边提供一种使用点分治，bitset  的乱搞方法。
+考虑需要在线查询，所以建出点分树。
+设当前查询点为  $(u,v)$  ，其在点分树上的  LCA  为  $rt$  ，即在一次点分治中以  $rt$  为分治重心找到处在不同子树内的  $u,v$...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-11-08</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/10/31/CSP-2022/">CSP-2022 vp记录</a></h3></div><div class="post-content"><p>真实情况：报名了忘记交钱所以莫得参加。
 虚假情况：我就是被疫情封住了嘿嘿嘿。
 额外情况：vp 完以后拷到 u 盘的过程中出了点小问题代码丢失了，然后我把重启格式化的电脑关了 QAQ。
 T1
 赛时：
-开局觉得  $O(n^3)$  做法非常靠谱，枚举第一二四个点，预处理点对中两点都能到达的点的最大值次大值(防止重点...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-10-31</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/04/02/2021%E7%9C%81%E9%80%89%E8%81%94%E8%80%83/">2021省选联考做题记录</a></h3></div><div class="post-content"><p>
-不管AB卷了就按洛谷的排列顺序来写吧。
-
-1.卡牌游戏
-问题可以看成是选最多 $m$ 个 $b_i$ 所能达到的最佳答案。
-直接 $a,b$  混在一起排序（当然要记录下这个数原来是 $a$ 还是 $b$ ）。然后要做的就是尽量砍掉两头的数。
-直接双指针记录前面删 $i$ 个数是后面最多删多少个数，扫一遍求个最...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-04-02</span><i class="fa fa-tag"></i></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">下一页</a></li></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+开局觉得  $O(n^3)$  做法非常靠谱，枚举第一二四个点，预处理点对中两点都能到达的点的最大值次大值(防止重点...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-10-31</span><i class="fa fa-tag"></i></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2022/10/28/P8600-%E8%BF%9E%E5%8F%B7%E5%8C%BA%E9%97%B4%E6%95%B0/">P8600 连号区间数</a></h3></div><div class="post-content"><p>分治
+新版题中还没有分治题解，而且旧版题里面分治也貌似是小众做法，那我来水一发吧。
+不需要复杂的数据结构，你只需要会一个桶和基本分治套路。
+因为  $P$  是一个排列，所以连号区间等价于  $\max_{i=l}^rP_i-\min_{i=l}^{r}P_i=r-l$。
+在解决这种限制条件中含有区间极值的全局区...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2022-10-28</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">下一页</a></li></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
