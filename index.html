@@ -20,17 +20,17 @@ T1
 题意：
 有 $A,B$ 两种物品初始各有 $a,b$ 个。便利店可以每次用 $c_B$ 个 $B$ 物品换取 $c_A$ 个 $A$ 物品，并且可以获取物品盲盒，每个盲盒随机开出一个某种物品。如果想要保证得到至少 $f_A$ 个 $A$ 物品，最少需要几个盲盒。
 题解：
-由于需要保证得到 $f...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E5%96%84%E8%89%AF%E5%88%86%E7%BB%84%E5%92%8C/">善良分组和</a></h3></div><div class="post-content"><p>与邪恶分组和类似，这次变成了 $0,1,…,m-1$ 和 $0,1,…,n-1$ 的异或和相等。
-令 $s_i$ 表示 $0,1,2,…,i$ 的异或和，问题转化为 $s_{m-1}=s_{n-1}$ 。
-找规律可以发现当 $n\geq 4$ 时，$n$ 为偶数时无解，$n$ 为奇数时与 $n$ 模 $4$ 同余...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E7%A5%9E%E7%A7%98ETT%E9%A2%98/">U631144 树高</a></h3></div><div class="post-content"><p>因为孙✌抱怨给小朋友准备的题目过于简单，突发奇想想到了这个题。
+由于需要保证得到 $f...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E9%82%AA%E6%81%B6%E5%88%86%E7%BB%84%E5%92%8C/">DFT-16 邪恶分组和</a></h3></div><div class="post-content"><p>证明：问题等效为 $\frac{m(m-1)}{2}\equiv \frac{n(n-1)}{2}(\bmod m),n\leq m$：
+首先所有组的和必须等于 $0+1+2+…+(m-1)$。
+同时，所有组的和也相当于是 $0+1+2+…+(n-1)$。
+因此这是一个必要条件。同时，如果我们先将 $0,1,2,...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E7%A5%9E%E7%A7%98ETT%E9%A2%98/">U631144 树高</a></h3></div><div class="post-content"><p>因为孙✌抱怨给小朋友准备的题目过于简单，突发奇想想到了这个题。
 U631144 树高 - 洛谷
 考虑使用 ETT 来维护子树移动。即直接维护树的欧拉环游序。
 那么一次移动相当于是一个区间被移动到了另一个位置。
 这个可以用平衡树来维护，同时需要区间加区间 $\max$。
-如果精细实现的话复杂度 $O(n+q\log...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E9%82%AA%E6%81%B6%E5%88%86%E7%BB%84%E5%92%8C/">DFT-16 邪恶分组和</a></h3></div><div class="post-content"><p>证明：问题等效为 $\frac{m(m-1)}{2}\equiv \frac{n(n-1)}{2}(\bmod m),n\leq m$：
-首先所有组的和必须等于 $0+1+2+…+(m-1)$。
-同时，所有组的和也相当于是 $0+1+2+…+(n-1)$。
-因此这是一个必要条件。同时，如果我们先将 $0,1,2,...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/11/CSP-2025/">CSP-2025</a></h3></div><div class="post-content"><p>CSP-J 普及组
+如果精细实现的话复杂度 $O(n+q\log...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2026/01/22/%E5%96%84%E8%89%AF%E5%88%86%E7%BB%84%E5%92%8C/">善良分组和</a></h3></div><div class="post-content"><p>与邪恶分组和类似，这次变成了 $0,1,…,m-1$ 和 $0,1,…,n-1$ 的异或和相等。
+令 $s_i$ 表示 $0,1,2,…,i$ 的异或和，问题转化为 $s_{m-1}=s_{n-1}$ 。
+找规律可以发现当 $n\geq 4$ 时，$n$ 为偶数时无解，$n$ 为奇数时与 $n$ 模 $4$ 同余...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-01-22</span><i class="fa fa-tag"></i><a class="tag" href="/tags/solutions/" title="solutions">solutions </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2025/11/11/CSP-2025/">CSP-2025</a></h3></div><div class="post-content"><p>CSP-J 普及组
 A. number
 
 题意：输入一行字符串s，用其中出现的数字最大能拼出多少。
