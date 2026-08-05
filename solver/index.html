@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="jr_zlw,124090875@link.cuhk.edu.cn"><title>Solver · (≧∀≦)ゞ</title><meta name="description" content=".solver-page {
+  --solver-ink: #263238;
+  --solver-muted: #718096;
+  --solver-line: #e3e8ee;
+  --solver-accent: #4f6f8f;
+  --solver-accent-dark: #3855"><meta name="keywords" content="Hexo,HTML,CSS,android,Linux"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous"><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script><script>document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+        delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+        ],
+        throwOnError: false
+    });
+});</script><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">(≧∀≦)ゞ</a></h3><div class="description"><p>HiHi~ Welcome!</p></div></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="http://github.com/https://github.com/jrzlw"><i class="fa fa-github"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a target="_blank" rel="noopener" href="https://www.caicai.me"> CaiCai </a><span>&</span><a target="_blank" rel="noopener" href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/">首页</a></li><li><a href="/archives">文章列表</a></li><li><a href="/solutions">题解</a></li><li><a href="/about">关于</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li></div><div class="avatar"><img src="https://cdn.luogu.com.cn/upload/image_hosting/a32ykt4i.png"></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>Solver</a></h3></div><div class="post-content"><style>
+.solver-page {
+  --solver-ink: #263238;
+  --solver-muted: #718096;
+  --solver-line: #e3e8ee;
+  --solver-accent: #4f6f8f;
+  --solver-accent-dark: #385571;
+  max-width: 920px;
+  margin: 0 auto;
+  color: var(--solver-ink);
+}
+.solver-page * { box-sizing: border-box; }
+.solver-card {
+  border: 1px solid var(--solver-line);
+  border-radius: 14px;
+  background: rgba(255,255,255,.86);
+  padding: 22px;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 24px rgba(38,50,56,.05);
+}
+.solver-access { max-width: 520px; margin: 80px auto; text-align: center; }
+.solver-access h1 { margin-bottom: 10px; }
+.solver-access p, .solver-description { color: var(--solver-muted); }
+.solver-access-form { display: flex; gap: 10px; margin-top: 22px; }
+.solver-access-form .solver-input { flex: 1; }
+.solver-access-status { min-height: 22px; margin-top: 12px; color: #b42318; font-size: 13px; }
+.solver-hidden { display: none !important; }
+.solver-intro { margin-bottom: 28px; }
+.solver-intro h1 { margin-bottom: 8px; }
+.solver-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 12px; }
+.solver-label { font-weight: 700; }
+.solver-hint { color: var(--solver-muted); font-size: 13px; }
+.solver-input, .solver-textarea {
+  width: 100%; border: 1px solid #ccd5df; border-radius: 9px; background: #fff;
+  color: var(--solver-ink); font: inherit; outline: none;
+}
+.solver-input { height: 42px; padding: 0 11px; }
+.solver-textarea { min-height: 300px; resize: vertical; padding: 15px; line-height: 1.65; }
+.solver-input:focus, .solver-textarea:focus { border-color: var(--solver-accent); box-shadow: 0 0 0 3px rgba(79,111,143,.12); }
+.solver-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.solver-button { border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; font: inherit; background: #edf1f5; color: var(--solver-ink); }
+.solver-button:hover { background: #dfe7ef; }
+.solver-button.primary { background: var(--solver-accent); color: #fff; }
+.solver-button.primary:hover { background: var(--solver-accent-dark); }
+.solver-button:disabled { cursor: wait; opacity: .55; }
+.solver-config { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 12px; }
+.solver-field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
+.solver-status { min-height: 22px; margin-top: 12px; color: var(--solver-muted); font-size: 13px; }
+.solver-status.error { color: #b42318; }
+.solver-result { min-height: 180px; line-height: 1.8; }
+.solver-result:empty::before { content: '解题思路和复杂度分析会显示在这里'; color: #a0acb8; }
+.solver-result pre, .solver-result code { display: none !important; }
+.solver-result img { max-width: 100%; }
+.solver-warning { color: #8a5a00; background: #fff7e6; border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+@media (max-width: 680px) {
+  .solver-access-form { flex-direction: column; }
+  .solver-card { padding: 15px; }
+  .solver-config { grid-template-columns: 1fr; }
+  .solver-textarea { min-height: 240px; }
+}
+</style>
+<div class="solver-card solver-access" id="solverAccessGate">
+  <h1>受限页面</h1>
+  <p>请输入访问密钥后继续。</p>
+  <div class="solver-access-form">
+    <input class="solver-input" id="solverAccessKey" type="password" placeholder="访问密钥" autocomplete="off">
+    <button class="solver-button primary" id="solverUnlock" type="button">进入</button>
+  </div>
+  <div class="solver-access-status" id="solverAccessStatus" role="alert" aria-live="polite"></div>
+</div>
+<div class="solver-page solver-hidden" id="solverPage">
+  <div class="solver-intro">
+    <h1>算法竞赛 Solver</h1>
+    <p class="solver-description">输入英文或中文题目，模型只返回解题思路与复杂度分析，不返回任何代码。</p>
+  </div>
+  <div class="solver-card">
+    <div class="solver-toolbar">
+      <span class="solver-label">题目原文</span>
+      <span class="solver-hint" id="solverCount">0 / 30000</span>
+    </div>
+    <textarea class="solver-textarea" id="solverInput" maxlength="30000" placeholder="粘贴英文或中文算法竞赛题目……"></textarea>
+    <div class="solver-actions">
+      <button class="solver-button primary" id="solverSubmit" type="button">分析题目</button>
+      <button class="solver-button" id="solverSample" type="button">填入样例</button>
+      <button class="solver-button" id="solverClear" type="button">清空</button>
+    </div>
+    <div class="solver-status" id="solverStatus" role="status" aria-live="polite"></div>
+  </div>
+  <div class="solver-card">
+    <div class="solver-toolbar">
+      <span class="solver-label">接口配置</span>
+      <span class="solver-hint">API Key 仅用于当前页面请求</span>
+    </div>
+    <div class="solver-config">
+      <div class="solver-field">
+        <label for="solverEndpoint">接口地址</label>
+        <input class="solver-input" id="solverEndpoint" value="https://api.deepseek.com/chat/completions" autocomplete="url">
+      </div>
+      <div class="solver-field">
+        <label for="solverModel">模型名</label>
+        <input class="solver-input" id="solverModel" value="deepseek-chat" autocomplete="off">
+      </div>
+      <div class="solver-field">
+        <label for="solverKey">API Key</label>
+        <input class="solver-input" id="solverKey" type="password" placeholder="sk-……" autocomplete="off">
+      </div>
+    </div>
+    <p class="solver-warning">返回内容若包含代码块或 C++ 的 <code>#include</code> 标志，会被判定为不合规并拒绝显示。</p>
+  </div>
+  <div class="solver-card">
+    <div class="solver-toolbar"><span class="solver-label">分析结果</span></div>
+    <div class="solver-result" id="solverResult"></div>
+  </div>
+</div>
+<script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+<script>
+(function () {
+  var accessGate = document.getElementById('solverAccessGate');
+  var accessKey = document.getElementById('solverAccessKey');
+  var unlockButton = document.getElementById('solverUnlock');
+  var accessStatus = document.getElementById('solverAccessStatus');
+  var accessHash = 'f2910dd93a9032181f0ee7ad6f5cf429e4b0aef93ac8deaadf22a6fb89950a13';
+  var sessionKey = 'solver-access-granted';
+
+  function bytesToHex(bytes) {
+    return Array.prototype.map.call(new Uint8Array(bytes), function (byte) {
+      return byte.toString(16).padStart(2, '0');
+    }).join('');
+  }
+  function unlock() {
+    if (!accessKey.value) {
+      accessStatus.textContent = '请输入访问密钥。';
+      return;
+    }
+    if (!window.crypto || !window.crypto.subtle) {
+      accessStatus.textContent = '当前浏览器不支持安全校验。';
+      return;
+    }
+    unlockButton.disabled = true;
+    window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(accessKey.value)).then(function (digest) {
+      if (bytesToHex(digest) !== accessHash) throw new Error('invalid');
+      sessionStorage.setItem(sessionKey, '1');
+      accessGate.classList.add('solver-hidden');
+      document.getElementById('solverPage').classList.remove('solver-hidden');
+    }).catch(function () {
+      accessStatus.textContent = '访问密钥不正确。';
+      accessKey.select();
+    }).finally(function () { unlockButton.disabled = false; });
+  }
+  if (sessionStorage.getItem(sessionKey) === '1') {
+    accessGate.classList.add('solver-hidden');
+    document.getElementById('solverPage').classList.remove('solver-hidden');
+  }
+  unlockButton.addEventListener('click', unlock);
+  accessKey.addEventListener('keydown', function (event) { if (event.key === 'Enter') unlock(); });
+
+  var input = document.getElementById('solverInput');
+  var count = document.getElementById('solverCount');
+  var endpoint = document.getElementById('solverEndpoint');
+  var model = document.getElementById('solverModel');
+  var key = document.getElementById('solverKey');
+  var submit = document.getElementById('solverSubmit');
+  var status = document.getElementById('solverStatus');
+  var result = document.getElementById('solverResult');
+  var sample = '给定一个长度为 n 的数组 a，请求出一个非空子序列的最大元素和。题目要求输出最大值，并满足常规的输入规模约束。';
+
+  function setStatus(message, isError) {
+    status.textContent = message || '';
+    status.className = 'solver-status' + (isError ? ' error' : '');
+  }
+  function updateCount() { count.textContent = input.value.length + ' / 30000'; }
+  function render(text) {
+    if (window.marked && window.DOMPurify) {
+      result.innerHTML = DOMPurify.sanitize(marked.parse(text, { gfm: true, breaks: true }));
+    } else {
+      result.textContent = text;
+    }
+    if (window.renderMathInElement) {
+      renderMathInElement(result, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '$', right: '$', display: false },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '\\[', right: '\\]', display: true }
+        ],
+        throwOnError: false
+      });
+    }
+  }
+  function getMessage(data) {
+    return data && data.choices && data.choices[0] && data.choices[0].message
+      ? data.choices[0].message.content : '';
+  }
+  function hasForbiddenCode(text) {
+    return /```|~~~|<\s*(code|pre)\b|#include\s*[<"]/i.test(text);
+  }
+  async function solve() {
+    var question = input.value.trim();
+    if (!question) return setStatus('请先输入题目原文。', true);
+    if (!key.value.trim()) return setStatus('请填写 API Key。', true);
+    if (!endpoint.value.trim() || !model.value.trim()) return setStatus('请填写接口地址和模型名。', true);
+    submit.disabled = true;
+    result.textContent = '';
+    setStatus('正在请求模型分析题目……');
+    var systemPrompt = [
+      '你是一名严谨的算法竞赛教练。',
+      '用户会提供一道英文或中文的 OI、ICPC、XCPC 或其他算法竞赛题目。',
+      '请先准确理解题意，然后只返回以下两部分：',
+      '1. 解题思路：解释关键观察、算法设计、正确性直觉和必要的实现要点，但不得给出任何代码。',
+      '2. 复杂度分析：明确说明时间复杂度和空间复杂度。',
+      '严禁返回任何程序代码、伪代码、代码块、代码片段、函数签名、变量声明、具体语言语法或可直接改写成程序的逐行实现。',
+      '严禁返回题目的最终答案、样例答案、额外提示之外的内容；这里的“答案”指结果数值或具体输出，不是解题思路。',
+      '不要输出 Markdown 代码围栏，不要使用 #include。',
+      '如果无法确定题意，只指出理解上的歧义，不要猜测并补充代码。',
+      '对于题目中涉及到的数学公式，请使用LaTeX内联 $formula$ 来输出。部分数学公式格式可能错误，你需要推断数学公式的意思并输出正确的格式。'
+    ].join('\n');
+    try {
+      var response = await fetch(endpoint.value.trim(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key.value.trim() },
+        body: JSON.stringify({ model: model.value.trim(), temperature: 0.1, messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: question }
+        ] })
+      });
+      var data = await response.json().catch(function () { return {}; });
+      if (!response.ok) throw new Error((data.error && (data.error.message || data.error)) || 'HTTP ' + response.status);
+      var text = getMessage(data).trim();
+      if (!text) throw new Error('模型没有返回有效内容。');
+      if (hasForbiddenCode(text)) throw new Error('模型返回疑似包含代码，已拒绝显示，请重试。');
+      render(text);
+      setStatus('分析完成。请结合题目原文自行判断思路是否适用。');
+    } catch (error) {
+      setStatus('分析失败：' + (error.message || '无法连接接口。') + '（如果是跨域错误，请确认该接口允许浏览器直接调用。）', true);
+    } finally {
+      submit.disabled = false;
+    }
+  }
+  input.addEventListener('input', updateCount);
+  submit.addEventListener('click', solve);
+  document.getElementById('solverSample').addEventListener('click', function () { input.value = sample; updateCount(); });
+  document.getElementById('solverClear').addEventListener('click', function () { input.value = ''; result.textContent = ''; setStatus(''); updateCount(); });
+  updateCount();
+}());
+</script>
+</div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2026-08-05</span></div></div></div></div></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
