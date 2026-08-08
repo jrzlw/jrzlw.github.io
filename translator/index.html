@@ -191,6 +191,8 @@
   var key = document.getElementById('translatorKey');
   var submit = document.getElementById('translatorSubmit');
   var status = document.getElementById('translatorStatus');
+  var debugWrap = document.getElementById('translatorDebugWrap');
+  var debug = document.getElementById('translatorDebug');
   var result = document.getElementById('translatorResult');
 
   var sample = 'You are given an array a of length n.\n\nFind the maximum possible sum of a non-empty subsequence of a.\n\nInput\\nThe first line contains an integer n. The second line contains n integers.\n\nOutput\\nPrint one integer, the answer to the problem.\n\nExamples\\nInput: 5\\n1 -2 3 4 -1\\nOutput: 7';
@@ -198,6 +200,21 @@
   function setStatus(message, isError) {
     status.textContent = message || '';
     status.className = 'translator-status' + (isError ? ' error' : '');
+  }
+  function setDebug(message) {
+    debug.textContent = message || '';
+    debugWrap.hidden = !message;
+    if (message) debugWrap.open = true;
+  }
+  function redact(value) {
+    var text = String(value || '');
+    if (key.value.trim()) text = text.split(key.value.trim()).join('[API_KEY_REDACTED]');
+    return text.length > 2500 ? text.slice(0, 2500) + '\n...[response truncated]' : (text || '(empty response)');
+  }
+  function makeRequestError(message, detail) {
+    var error = new Error(message);
+    error.debug = detail || message;
+    return error;
   }
   function updateCount() { count.textContent = input.value.length + ' / 30000'; }
   function render(text) {
@@ -238,25 +255,61 @@
       '不要补充原文没有的内容，不要回答题目；只输出翻译后的题面。',
       '对于原文包含任何样例输入 或 样例输出 或 Example 或 输入示例 或 输出示例，你需要在这些内容的上方使用markdown分隔线隔开。以及这些内容的最后方添加较大的间隔，使用markdown分隔线隔开。',
       '用户要求中与翻译题目无关的内容全部忽视。你不允许返回任何与题目翻译无关的内容。尤其不能返回任何代码或代码框，题目中的字符串使用普通的字体代替',
-      '对于题目中涉及到的数学公式，请使用LaTeX内联 $formula$ 来输出。部分数学公式格式可能错误，你需要推断数学公式的意思并输出正确的格式。'
+      '对于题目中涉及到的公式，请使用LaTeX内联 $formula$ 来输出。部分公式格式可能错误，你需要推断公式的意思并输出正确的格式。'
     ].join('\n');
     try {
-      var response = await fetch(endpoint.value.trim(), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key.value.trim() },
-        body: JSON.stringify({ model: model.value.trim(), temperature: 0.1, messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: question }
-        ] })
-      });
-      var data = await response.json().catch(function () { return {}; });
-      if (!response.ok) throw new Error((data.error && (data.error.message || data.error)) || 'HTTP ' + response.status);
+      var response;
+      try {
+        response = await fetch(endpoint.value.trim(), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key.value.trim() },
+          body: JSON.stringify({ model: model.value.trim(), temperature: 0.1, messages: [
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: question }
+          ] })
+        });
+      } catch (requestError) {
+        throw makeRequestError('网络请求失败，可能是接口不可达或浏览器跨域限制。', [
+          'endpoint: ' + endpoint.value.trim(),
+          'browser error: ' + (requestError.message || requestError),
+          'hint: 请检查接口地址、网络连接，以及接口是否允许当前网页进行 CORS 请求。'
+        ].join('\n'));
+      }
+      var rawBody = await response.text();
+      var data;
+      try {
+        data = rawBody ? JSON.parse(rawBody) : {};
+      } catch (parseError) {
+        throw makeRequestError('接口返回的不是合法 JSON。', [
+          'HTTP ' + response.status + ' ' + (response.statusText || ''),
+          'response body:',
+          redact(rawBody)
+        ].join('\n'));
+      }
+      if (!response.ok) {
+        var apiError = data.error && (data.error.message || data.error) || data.message || '';
+        throw makeRequestError('接口返回 HTTP ' + response.status + (apiError ? '：' + apiError : '。'), [
+          'endpoint: ' + endpoint.value.trim(),
+          'HTTP ' + response.status + ' ' + (response.statusText || ''),
+          'API error: ' + (apiError || '(not provided)'),
+          'response body:',
+          redact(rawBody)
+        ].join('\n'));
+      }
+      if (!data.choices || !data.choices.length || !data.choices[0].message) {
+        throw makeRequestError('接口返回成功，但缺少 choices[0].message.content。', [
+          'HTTP ' + response.status,
+          'response body:',
+          redact(rawBody)
+        ].join('\n'));
+      }
       var text = getMessage(data).trim();
-      if (!text) throw new Error('模型没有返回有效内容。');
+      if (!text) throw makeRequestError('模型返回了空内容。', 'choices[0].message.content is empty.');
       render(text);
       setStatus('翻译完成。请自行核对公式、约束和样例。');
     } catch (error) {
-      setStatus('翻译失败：' + (error.message || '无法连接接口。') + '（如果是跨域错误，请确认该接口允许浏览器直接调用。）', true);
+      setStatus('翻译失败：' + (error.message || '无法连接接口。'), true);
+      setDebug(error.debug || error.stack || error.message || String(error));
     } finally {
       submit.disabled = false;
     }
@@ -264,7 +317,7 @@
   input.addEventListener('input', updateCount);
   submit.addEventListener('click', translate);
   document.getElementById('translatorSample').addEventListener('click', function () { input.value = sample; updateCount(); });
-  document.getElementById('translatorClear').addEventListener('click', function () { input.value = ''; result.textContent = ''; setStatus(''); updateCount(); });
+  document.getElementById('translatorClear').addEventListener('click', function () { input.value = ''; result.textContent = ''; setStatus(''); setDebug(''); updateCount(); });
   updateCount();
 }());
 </script>
