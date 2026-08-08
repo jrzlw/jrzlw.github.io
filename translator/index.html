@@ -215,9 +215,6 @@
     return data && data.choices && data.choices[0] && data.choices[0].message
       ? data.choices[0].message.content : '';
   }
-  function isLikelySolution(text) {
-    return /```|~~~|<\s*(code|pre)\b|#include\s*[<"]|(^|\n)\s*(解法|思路|做法|证明|复杂度分析|solution|approach|proof)\s*[:：#]/i.test(text);
-  }
   async function translate() {
     var question = input.value.trim();
     if (!question) return setStatus('请先输入题目原文。', true);
@@ -249,7 +246,6 @@
       if (!response.ok) throw new Error((data.error && (data.error.message || data.error)) || 'HTTP ' + response.status);
       var text = getMessage(data).trim();
       if (!text) throw new Error('模型没有返回有效内容。');
-      if (isLikelySolution(text)) throw new Error('模型返回疑似包含代码或解法，已拒绝显示，请重试。');
       render(text);
       setStatus('翻译完成。请自行核对公式、约束和样例。');
     } catch (error) {
