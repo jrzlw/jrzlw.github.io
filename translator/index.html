@@ -67,6 +67,9 @@
 .translator-field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 700; }
 .translator-status { min-height: 22px; margin-top: 12px; color: var(--translator-muted); font-size: 13px; }
 .translator-status.error { color: #b42318; }
+.translator-debug { margin-top: 12px; color: #7a271a; font-size: 13px; }
+.translator-debug summary { cursor: pointer; font-weight: 700; }
+.translator-debug pre { max-height: 240px; overflow: auto; margin: 8px 0 0; padding: 10px; white-space: pre-wrap; word-break: break-word; background: #fff4f2; border-radius: 8px; font: 12px/1.55 ui-monospace, SFMono-Regular, Consolas, monospace; }
 .translator-result { min-height: 180px; line-height: 1.8; }
 .translator-result:empty::before { content: '翻译结果会显示在这里'; color: #a0acb8; }
 .translator-result pre { overflow-x: auto; padding: 12px; background: #f5f7f9; border-radius: 8px; }
@@ -106,6 +109,10 @@
       <button class="translator-button" id="translatorClear" type="button">清空</button>
     </div>
     <div class="translator-status" id="translatorStatus" role="status" aria-live="polite"></div>
+    <details class="translator-debug" id="translatorDebugWrap" hidden>
+      <summary>查看错误详情</summary>
+      <pre id="translatorDebug"></pre>
+    </details>
   </div>
   <div class="translator-card">
     <div class="translator-toolbar">
