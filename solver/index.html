@@ -135,7 +135,7 @@
   var accessKey = document.getElementById('solverAccessKey');
   var unlockButton = document.getElementById('solverUnlock');
   var accessStatus = document.getElementById('solverAccessStatus');
-  var accessHash = 'f2910dd93a9032181f0ee7ad6f5cf429e4b0aef93ac8deaadf22a6fb89950a13';
+  var accessHash = '8898fb372e86634ff563fc840e2c117761ed1c619759e966ab320c34a22236d3';
   var sessionKey = 'solver-access-granted';
 
   function bytesToHex(bytes) {
@@ -228,7 +228,8 @@
       '严禁返回题目的最终答案、样例答案、额外提示之外的内容；这里的“答案”指结果数值或具体输出，不是解题思路。',
       '不要输出 Markdown 代码围栏，不要使用 #include。',
       '如果无法确定题意，只指出理解上的歧义，不要猜测并补充代码。',
-      '对于题目中涉及到的数学公式，请使用LaTeX内联 $formula$ 来输出。部分数学公式格式可能错误，你需要推断数学公式的意思并输出正确的格式。'
+      '对于题目中涉及到的数学公式，请使用LaTeX内联 $formula$ 来输出。部分数学公式格式可能错误，你需要推断数学公式的意思并输出正确的格式。',
+      '如果题目解法涉及到动态规划相关的内容，严禁返回动态规划的转移方程。你只允许返回动态规划的状态设计。例如: 如果一道题目经过某种转化后是一个背包问题，你需要先输出如何转化，然后再告知 f[i][j] 表示什么，但不允许输出 f[i][j] 如何转移。'
     ].join('\n');
     try {
       var response = await fetch(endpoint.value.trim(), {
