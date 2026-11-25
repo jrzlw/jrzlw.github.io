@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10141b">
+  <title>Fillominordle Adaptive · 自适应数织猜谜</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./game.mjs"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="back-link" href="/" aria-label="返回博客首页">← <span>返回博客</span></a>
+      <div class="brand">FILLOMINORDLE <span>ADAPTIVE</span></div>
+      <button class="icon-button" id="helpButton" type="button" aria-label="查看玩法">?</button>
+    </header>
+
+    <main>
+      <div class="hero">
+        <p class="eyebrow">3 × 3 · FILLOMINO × WORDLE</p>
+        <h1>猜出会躲避的棋盘</h1>
+        <p class="intro">每次提交一个合法的 3×3 Fillomino 棋盘。系统会给出九格颜色线索，并尽可能保留更多答案。没有次数限制。</p>
+      </div>
+
+      <div class="game-layout">
+        <section class="play-panel" aria-labelledby="boardTitle">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">YOUR GUESS</p>
+              <h2 id="boardTitle">当前猜测 <span id="turnNumber">#1</span></h2>
+            </div>
+            <button class="text-button" id="clearButton" type="button">清空棋盘</button>
+          </div>
+
+          <div class="board-wrap">
+            <div class="board" id="inputBoard" role="group" aria-label="当前 3×3 猜测棋盘"></div>
+          </div>
+          <p class="input-hint">点击格子后输入 1–9；方向键移动，退格删除。也可使用下方数字键盘。</p>
+          <div class="keypad" id="keypad" aria-label="数字键盘"></div>
+          <div class="actions">
+            <button class="submit-button" id="submitButton" type="button">提交猜测 <span aria-hidden="true">↗</span></button>
+            <button class="secondary-button" id="sampleButton" type="button">随机填入合法棋盘</button>
+          </div>
+          <p class="message" id="message" role="status" aria-live="polite"></p>
+        </section>
+
+        <aside class="info-panel">
+          <div class="stat-grid">
+            <div class="stat"><span>已猜次数</span><strong id="guessCount">0</strong></div>
+            <div class="stat"><span>剩余候选</span><strong id="candidateCount">445</strong></div>
+          </div>
+          <div class="legend-card">
+            <h2>颜色线索</h2>
+            <div class="legend-row"><span class="legend-tile green">2</span><div><strong>位置正确</strong><small>数字和位置都正确</small></div></div>
+            <div class="legend-row"><span class="legend-tile yellow">3</span><div><strong>位置不对</strong><small>答案中仍有可匹配的这个数字</small></div></div>
+            <div class="legend-row"><span class="legend-tile gray">1</span><div><strong>没有匹配</strong><small>答案中没有剩余可匹配的这个数字</small></div></div>
+          </div>
+          <div class="rule-card">
+            <h2>Fillomino 规则</h2>
+            <p>相同数字组成的每个四方向连通区域，格数必须恰好等于该数字。角碰角不算相连。</p>
+            <p class="muted">自适应模式会在每次提交后选择剩余答案最多的一组反馈；只要还能避开全绿，就不会提前判赢。</p>
+          </div>
+        </aside>
+      </div>
+
+      <section class="history-section" aria-labelledby="historyTitle">
+        <div class="section-heading history-heading">
+          <div><p class="section-kicker">PAST GUESSES</p><h2 id="historyTitle">猜测记录</h2></div>
+          <button class="text-button danger" id="newGameButton" type="button">重新开始</button>
+        </div>
+        <p class="history-empty" id="historyEmpty">还没有提交记录。先填满上方九个格子吧。</p>
+        <div class="history-list" id="historyList"></div>
+      </section>
+      <footer class="footer">灵感来自 <a href="https://pwahs.github.io/fillominordle/" target="_blank" rel="noopener noreferrer">Fillominordle</a> · <a href="/">返回博客</a></footer>
+    </main>
+  </div>
+
+  <dialog id="helpDialog" aria-labelledby="helpTitle">
+    <div class="dialog-head"><h2 id="helpTitle">如何游玩</h2><button class="icon-button" id="closeHelpButton" type="button" aria-label="关闭玩法说明">×</button></div>
+    <ol>
+      <li>在九个格子中填入 1–9，组成一个合法的 3×3 Fillomino 棋盘。</li>
+      <li>同数字的四连通区域，面积必须等于这个数字。例如两个相邻的 2 必须组成恰好两格的一块。</li>
+      <li>提交后看逐格颜色：绿色位置正确；黄色数字存在但位置不对；灰色没有剩余匹配。重复数字按 Wordle 的数量规则计算。</li>
+      <li>系统不会预先固定答案，而会选择仍可能的最大答案组。持续缩小候选集，直到猜中！</li>
+    </ol>
+    <button class="submit-button dialog-action" id="startButton" type="button">开始游戏</button>
+  </dialog>
+</body>
+</html>
