@@ -131,15 +131,41 @@ export function scoreGuess(guess, answer, feedbackMode = 'wordle') {
   return { pattern, feedback: [...pattern].map(c => COLORS[c]) };
 }
 
-function betterBucket(a, b) {
-  if (!b || a.boards.length !== b.boards.length) return !b || a.boards.length > b.boards.length;
-  const count = (s, c) => [...s].filter(x => x === c).length;
-  const dg = count(a.pattern, 'G') - count(b.pattern, 'G');
-  if (dg) return dg < 0;
-  const dy = count(a.pattern, 'Y') - count(b.pattern, 'Y');
-  if (dy) return dy < 0;
-  // ASCII ordering B < G < Y. Deterministic even across browsers/locales.
-  return a.pattern < b.pattern;
+/** One point per maximal four-connected region, regardless of its number. */
+export function evaluateBoard(input) {
+  const board = normalizeBoard(input);
+  const seen = new Set();
+  let regions = 0;
+  for (let start = 0; start < CELL_COUNT; start++) {
+    if (seen.has(start)) continue;
+    regions++;
+    const queue = [start];
+    seen.add(start);
+    for (let p = 0; p < queue.length; p++) {
+      for (const next of NEIGHBORS[queue[p]]) {
+        if (!seen.has(next) && board[next] === board[start]) {
+          seen.add(next);
+          queue.push(next);
+        }
+      }
+    }
+  }
+  return regions;
+}
+
+/** Stable softmax; temperature > 0 controls how strongly high scores dominate. */
+export function softmax(scores, temperature = 1) {
+  if (!Array.isArray(scores) || scores.some(score => !Number.isFinite(score))) {
+    throw new TypeError('scores must be an array of finite numbers.');
+  }
+  if (!Number.isFinite(temperature) || temperature <= 0) {
+    throw new TypeError('temperature must be a positive finite number.');
+  }
+  if (scores.length === 0) return [];
+  const max = Math.max(...scores);
+  const weights = scores.map(score => Math.exp((score - max) / temperature));
+  const total = weights.reduce((sum, weight) => sum + weight, 0);
+  return weights.map(weight => weight / total);
 }
 
 function copyRecord(record) {
@@ -151,14 +177,24 @@ export class AdaptiveFillomino {
   #candidates;
   #history = [];
   #won = false;
+  #randomState;
 
   constructor(options = {}) {
     if (options === null || typeof options !== 'object' || Array.isArray(options)) throw new TypeError('options must be an object.');
-    const { feedbackMode = 'wordle', requireValidGuess = true } = options;
+    const { feedbackMode = 'wordle', requireValidGuess = true,
+      temperature = 1, seed = Math.floor(Math.random() * 0x100000000) } = options;
     checkMode(feedbackMode);
     if (typeof requireValidGuess !== 'boolean') throw new TypeError('requireValidGuess must be a boolean.');
-    this.#options = Object.freeze({ feedbackMode, requireValidGuess });
+    if (!Number.isFinite(temperature) || temperature <= 0) throw new TypeError('temperature must be a positive finite number.');
+    if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new TypeError('seed must be an unsigned 32-bit integer.');
+    this.#options = Object.freeze({ feedbackMode, requireValidGuess, temperature, seed });
     this.#candidates = boardStrings().slice();
+    this.#randomState = seed;
+  }
+
+  #nextRandom() {
+    this.#randomState = (Math.imul(this.#randomState, 1664525) + 1013904223) >>> 0;
+    return this.#randomState / 0x100000000;
   }
 
   /** Invalid input or a finished game throws without changing any state. */
@@ -170,24 +206,24 @@ export class AdaptiveFillomino {
     }
     const key = guess.join('');
     const before = this.#candidates.length;
-    const groups = new Map();
-    for (const answer of this.#candidates) {
-      const pattern = patternFor(key, answer, this.#options.feedbackMode);
-      // Never allow an avoidable win, even if all non-win groups are singletons.
-      if (before > 1 && pattern === WIN_PATTERN) continue;
-      if (!groups.has(pattern)) groups.set(pattern, { pattern, boards: [] });
-      groups.get(pattern).boards.push(answer);
+    // Preserve the adaptive rule: a guess cannot win while another answer remains.
+    const eligible = before > 1 ? this.#candidates.filter(answer => answer !== key) : this.#candidates;
+    const probabilities = softmax(eligible.map(evaluateBoard), this.#options.temperature);
+    const draw = this.#nextRandom();
+    let cumulative = 0;
+    let sampled = eligible[eligible.length - 1];
+    for (let i = 0; i < eligible.length; i++) {
+      cumulative += probabilities[i];
+      if (draw < cumulative) { sampled = eligible[i]; break; }
     }
-    let selected;
-    for (const bucket of groups.values()) if (betterBucket(bucket, selected)) selected = bucket;
-    if (!selected) throw new Error('Internal invariant violated: no consistent candidate.');
-    this.#candidates = selected.boards;
-    this.#won = selected.pattern === WIN_PATTERN;
+    const pattern = patternFor(key, sampled, this.#options.feedbackMode);
+    this.#candidates = this.#candidates.filter(answer => patternFor(key, answer, this.#options.feedbackMode) === pattern);
+    this.#won = pattern === WIN_PATTERN;
     const record = {
       turn: this.#history.length + 1,
       guess,
-      pattern: selected.pattern,
-      feedback: [...selected.pattern].map(c => COLORS[c]),
+      pattern,
+      feedback: [...pattern].map(c => COLORS[c]),
       candidatesBefore: before,
       candidatesAfter: this.#candidates.length,
       eliminated: before - this.#candidates.length,
@@ -220,6 +256,7 @@ export class AdaptiveFillomino {
     this.#history = [];
     this.#won = false;
     this.#candidates = boardStrings().slice();
+    this.#randomState = this.#options.seed;
     return this.getState();
   }
 

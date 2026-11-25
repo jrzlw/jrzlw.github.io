@@ -20,7 +20,7 @@
       <div class="hero">
         <p class="eyebrow">3 × 3 · FILLOMINO × WORDLE</p>
         <h1>猜出会躲避的棋盘</h1>
-        <p class="intro">每次提交一个合法的 3×3 Fillomino 棋盘。系统会给出九格颜色线索，并尽可能保留更多答案。没有次数限制。</p>
+        <p class="intro">每次提交一个合法的 3×3 Fillomino 棋盘。系统偏向选择连通块更多的候选答案，给出九格颜色线索。没有次数限制。</p>
       </div>
 
       <div class="game-layout">
@@ -59,7 +59,7 @@
           <div class="rule-card">
             <h2>Fillomino 规则</h2>
             <p>相同数字组成的每个四方向连通区域，格数必须恰好等于该数字。角碰角不算相连。</p>
-            <p class="muted">自适应模式会在每次提交后选择剩余答案最多的一组反馈；只要还能避开全绿，就不会提前判赢。</p>
+            <p class="muted">每个连通块计 1 分。系统用 softmax 加权随机选择临时答案，分数越高越容易被选中；只要还能避开全绿，就不会提前判赢。</p>
           </div>
         </aside>
       </div>
@@ -82,7 +82,7 @@
       <li>在九个格子中填入 1–9，组成一个合法的 3×3 Fillomino 棋盘。</li>
       <li>同数字的四连通区域，面积必须等于这个数字。例如两个相邻的 2 必须组成恰好两格的一块。</li>
       <li>提交后看逐格颜色：绿色位置正确；黄色数字存在但位置不对；灰色没有剩余匹配。重复数字按 Wordle 的数量规则计算。</li>
-      <li>系统不会预先固定答案，而会选择仍可能的最大答案组。持续缩小候选集，直到猜中！</li>
+      <li>系统不会预先固定答案，而会偏向连通块数较多的候选，随机选一个临时答案产生反馈。持续缩小候选集，直到猜中！</li>
     </ol>
     <button class="submit-button dialog-action" id="startButton" type="button">开始游戏</button>
   </dialog>

@@ -1,6 +1,6 @@
 import { AdaptiveFillomino, InvalidGuessError, enumerateBoards, validateBoard } from './engine.mjs';
 
-const STORAGE_KEY = 'fillominordle-adaptive-v1';
+const STORAGE_KEY = 'fillominordle-adaptive-v2';
 const $ = id => document.getElementById(id);
 const inputBoard = $('inputBoard');
 const keypad = $('keypad');
@@ -15,14 +15,15 @@ let invalidCells = new Set();
 function restoreGame() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (saved && Array.isArray(saved.guesses)) return AdaptiveFillomino.replay(saved.guesses);
+    if (saved && Array.isArray(saved.guesses) && saved.options) return AdaptiveFillomino.replay(saved.guesses, saved.options);
   } catch (_) { /* Damaged or unavailable local storage starts a fresh game. */ }
   return new AdaptiveFillomino();
 }
 
 function saveGame() {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ guesses: game.getState().history.map(item => item.guess) }));
+    const state = game.getState();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ options: state.options, guesses: state.history.map(item => item.guess) }));
   } catch (_) { /* The game remains playable without storage. */ }
 }
 
@@ -133,7 +134,7 @@ function submit() {
 
 function reset() {
   if (game.getState().turn && !window.confirm('清除当前猜测记录并重新开始？')) return;
-  game.reset();
+  game = new AdaptiveFillomino();
   draft = Array(9).fill(null);
   invalidCells.clear();
   selected = 0;
