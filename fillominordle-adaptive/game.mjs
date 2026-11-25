@@ -1,4 +1,4 @@
-import { AdaptiveFillomino, InvalidGuessError, enumerateBoards, validateBoard } from './engine.mjs';
+import { AdaptiveFillomino, InvalidGuessError, enumerateBoards, validateBoard } from './engine.mjs?v=2';
 
 const STORAGE_KEY = 'fillominordle-adaptive-v2';
 const $ = id => document.getElementById(id);
